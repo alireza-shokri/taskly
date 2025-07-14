@@ -26,8 +26,7 @@ pnpm-debug.log*
 # Optional: coverage from testing tools (if added later)
 coverage/
 
-# public screenshots (optional, اگر دوست نداری تصاویر داخل ریپو باشه)
-public/screenShot/
+
 
 # prettier/tailwindcss formatting logs (اگر استفاده کنی)
 .prettier-cache/
