@@ -1,44 +1,17 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import Button from "../../ui/Button";
 
-function DeleteItem({ onDelete, commonStyle, title }) {
-  const [showDelete, setshowDelete] = useState(false);
-  const touchTimer = useRef(null);
-  const hideTimer = useRef(null);
-  function handleTouchStart() {
-    touchTimer.current = setTimeout(() => {
-      setshowDelete(true);
-    }, 500);
+function DeleteItem({ onDelete, title, commonStyle }) {
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  function toggleDelete() {
+    setIsDeleting((prev) => !prev);
   }
-
-  function handleTouchEnd() {
-    clearTimeout(touchTimer.current);
-  }
-
-  function handleDelete() {
-    setshowDelete(false);
-    onDelete();
-  }
-
-  useEffect(() => {
-    if (showDelete)
-      hideTimer.current = setTimeout(() => {
-        setshowDelete(false);
-      }, 2000);
-
-    return () => clearTimeout(hideTimer);
-  }, [showDelete]);
 
   return (
-    <div
-      {...commonStyle}
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchEnd}
-      onMouseDown={handleTouchStart}
-      onMouseUp={handleTouchEnd}
-    >
+    <div {...commonStyle} onClick={toggleDelete}>
       <span>{title}</span>
-      {showDelete && <Button onClick={handleDelete}>❌</Button>}
+      {isDeleting && <Button onClick={onDelete}>❌</Button>}
     </div>
   );
 }
