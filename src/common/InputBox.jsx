@@ -70,7 +70,7 @@ function InputBox({ type }) {
     e.preventDefault();
     if (type === "notes") {
       const textareaValue = textareaRef.current.value;
-      if (!inputValue || !textareaValue) return;
+      if (!inputValue.trim() || !textareaValue.trim()) return;
       const newNotes = {
         id: generateUniqueId(),
         topic: inputValue,
@@ -80,7 +80,7 @@ function InputBox({ type }) {
       };
       dispatch(addNote(newNotes));
     } else {
-      if (!inputValue) return;
+      if (!inputValue.trim()) return;
       const newTask = {
         id: generateUniqueId(),
         topic: inputValue,
@@ -109,7 +109,7 @@ function InputBox({ type }) {
         onSubmit={handleSubmit}
         iconBtn="✅"
       >
-        {type === "notes" && inputValue && (
+        {type === "notes" && inputValue.trim() && (
           <textarea
             ref={textareaRef}
             className="w-full pl-6 outline-0"
@@ -119,7 +119,7 @@ function InputBox({ type }) {
       </Input>
 
       {/* Tags */}
-      {inputValue && (
+      {inputValue.trim() && (
         <div className="mt-2 ml-2 flex flex-wrap items-center gap-2">
           <span className="rounded-md bg-amber-100 text-gray-700 capitalize">
             tags :
@@ -141,7 +141,7 @@ function InputBox({ type }) {
       )}
 
       {/* Lists or Color Picker */}
-      {inputValue && (
+      {inputValue.trim() && (
         <>
           {type === "notes" ? (
             <div className="mt-2 ml-2 flex flex-wrap items-center">

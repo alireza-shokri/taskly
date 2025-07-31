@@ -31,7 +31,7 @@ function Input({
         />
 
         <Button customStyle="text-xl" onClick={onSubmit}>
-          {inputValue && iconBtn}
+          {inputValue.trim() && iconBtn}
         </Button>
       </div>
       {children}

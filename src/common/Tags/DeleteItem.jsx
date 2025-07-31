@@ -9,7 +9,7 @@ function DeleteItem({ onDelete, title, commonStyle }) {
   }
 
   return (
-    <div {...commonStyle} onClick={toggleDelete}>
+    <div {...commonStyle} onClick={toggleDelete} >
       <span>{title}</span>
       {isDeleting && <Button onClick={onDelete}>❌</Button>}
     </div>
